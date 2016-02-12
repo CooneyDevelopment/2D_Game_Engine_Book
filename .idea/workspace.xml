@@ -2,17 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="78f20263-1375-46be-9a30-2d4d9bb983a6" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dictionaries/bill.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Scripts/Engine/Renderable.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Scripts/Engine/Transform.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Scripts/Engine/SimpleShader.js" afterPath="$PROJECT_DIR$/Scripts/Engine/SimpleShader.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Scripts/GLSLShaders/SimpleVertexShader.glsl" afterPath="$PROJECT_DIR$/Scripts/GLSLShaders/SimpleVertexShader.glsl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Scripts/Engine/Renderable.js" afterPath="$PROJECT_DIR$/Scripts/Engine/Renderable.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Scripts/Game/Game.js" afterPath="$PROJECT_DIR$/Scripts/Game/Game.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Scripts/Engine/Engine_Core.js" afterPath="$PROJECT_DIR$/Scripts/Engine/Core/Engine_Core.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Scripts/Engine/Engine_VertexBuffer.js" afterPath="$PROJECT_DIR$/Scripts/Engine/Core/Engine_VertexBuffer.js" />
     </list>
     <ignored path="2D_Game_Engine_Book.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -32,18 +26,7 @@
     <favorites_list name="2D_Game_Engine_Book" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="Game.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Scripts/Game/Game.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.44130924">
-              <caret line="23" column="66" selection-start-line="23" selection-start-column="66" selection-end-line="23" selection-end-column="66" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -62,11 +45,12 @@
         <option value="$PROJECT_DIR$/Scripts/GLSLShaders/SimpleFragmentShader.glsl" />
         <option value="$PROJECT_DIR$/Scripts/Engine/Engine_Core.js" />
         <option value="$PROJECT_DIR$/Scripts/Engine/Engine_VertexBuffer.js" />
-        <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/Scripts/GLSLShaders/SimpleVertexShader.glsl" />
         <option value="$PROJECT_DIR$/Scripts/Engine/SimpleShader.js" />
+        <option value="$PROJECT_DIR$/Scripts/Engine/Transform.js" />
         <option value="$PROJECT_DIR$/Scripts/Engine/Renderable.js" />
         <option value="$PROJECT_DIR$/Scripts/Game/Game.js" />
+        <option value="$PROJECT_DIR$/index.html" />
       </list>
     </option>
   </component>
@@ -301,9 +285,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="0" width="1153" height="1047" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25560537" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25560537" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32932165" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -361,14 +345,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.09883721">
-          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Scripts/GLSLShaders/SimpleVertexShader.glsl">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.057562076">
@@ -385,18 +361,42 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Scripts/Libraries/gl-matrix.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33295712">
+          <caret line="117" column="4" selection-start-line="117" selection-start-column="4" selection-end-line="117" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Scripts/Engine/Renderable.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.1918736">
-          <caret line="10" column="52" selection-start-line="10" selection-start-column="52" selection-end-line="10" selection-end-column="52" />
+        <state vertical-scroll-proportion="0.21106094">
+          <caret line="11" column="67" selection-start-line="11" selection-start-column="67" selection-end-line="11" selection-end-column="67" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Scripts/Engine/Transform.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5564334">
+          <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.29651162">
+          <caret line="15" column="63" selection-start-line="15" selection-start-column="63" selection-end-line="15" selection-end-column="63" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Scripts/Game/Game.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.44130924">
-          <caret line="23" column="66" selection-start-line="23" selection-start-column="66" selection-end-line="23" selection-end-column="66" />
+        <state vertical-scroll-proportion="0.26862302">
+          <caret line="14" column="54" selection-start-line="14" selection-start-column="54" selection-end-line="14" selection-end-column="54" />
           <folding />
         </state>
       </provider>

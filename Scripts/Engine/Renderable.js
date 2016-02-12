@@ -6,9 +6,9 @@ function Renderable(shader){
     this.Transform = new Transform();
 }
 
-Renderable.prototype.Draw = function(){
+Renderable.prototype.Draw = function(vpMatrix){
     var _GL = GameEngine.Core.GetGL();
-    this.Shader.ActivateShader(this.Color);
+    this.Shader.ActivateShader(this.Color, vpMatrix);
     this.Shader.LoadObjectTransform(this.Transform.GetTransform());
     _GL.drawArrays(_GL.TRIANGLE_STRIP, 0, 4);
 };

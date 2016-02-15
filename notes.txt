@@ -1,0 +1,20 @@
+Model Space
+- Unique to each geometric object
+
+Normalized Device Coordinates (NDC) System
+- X/Y axis bounded to +1.0/-1.0
+- WebGL draws to this coordinate system.
+
+Transforms (matrix operations)
+- performed on the geometric object as it is drawn to the NDC.
+
+World Coordinate System (WC)
+- used instead of NDC system to perform transformations that behave as expected
+  * avoids the pitfalls of disproportional scaling to the canvas element
+
+View-Projection Transform
+- transforms WC into NDC so WebGL can draw.
+- mat4.lookAt() --> defines the center of the WC. Returns the View Matrix.
+- mat4.ortho() --> defines the dimensions of the WC. Returns the Projection Matrix.
+- ViewProjectionMatrix = ProjectionMatrix * ViewMatrix
+- gl.viewport() --> defines the viewport for subsequent drawings

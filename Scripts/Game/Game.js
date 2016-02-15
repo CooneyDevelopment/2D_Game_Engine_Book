@@ -2,37 +2,27 @@
 
 function Game(canvasId){
     GameEngine.Core.Initialize(canvasId);
-    var _GL = GameEngine.Core.GetGL();
+
+    this.Camera = new Camera(
+        vec2.fromValues(20, 60),
+        20,
+        [20, 40, 600, 300]
+    );
 
     this.ConstantColorShader = new SimpleShader(
         "Scripts/GLSLShaders/SimpleVertexShader.glsl",
         "Scripts/GLSLShaders/SimpleFragmentShader.glsl");
 
     GameEngine.Core.ClearCanvas([0.9, 0.9, 0.9, 1.0]); //clear entire canvas to off-white color
-    _GL.viewport(20, 40, 600, 300); //600x300 pixel area, bottom left is (20,40) offset
-    _GL.scissor(20, 40, 600, 300);
-    _GL.enable(_GL.SCISSOR_TEST);
-    GameEngine.Core.ClearCanvas([0.8, 0.8, 0.8, 1.0]); //clear viewport area to slighty darker color
-
-    var viewMatrix = mat4.create();
-    mat4.lookAt(viewMatrix,
-        vec3.fromValues(20, 60, 10),
-        vec3.fromValues(20, 60, 0),
-        vec3.fromValues(0, 1, 0));
-
-    var projectionMatrix = mat4.create();
-    mat4.ortho(projectionMatrix, -10, 10, -5, 5, 0, 1000);
-
-    var viewProjectionMatrix = mat4.create();
-    mat4.multiply(viewProjectionMatrix, projectionMatrix, viewMatrix);
-
+    this.Camera.SetupViewProjection();
+    var viewProjectionMatrix = this.Camera.GetViewProjectionMatrix();
 
     var _Grey      = [0.10, 0.10, 0.10, 1.00];
     var _Red       = [0.90, 0.10, 0.10, 1.00];
     var _Green     = [0.10, 0.90, 0.10, 1.00];
     var _Blue      = [0.10, 0.10, 0.90, 1.00];
-    var _Pink  = [0.90, 0.10, 0.90, 1.00];
-    var _Yellow   = [0.90, 0.90, 0.10, 1.00];
+    var _Pink      = [0.90, 0.10, 0.90, 1.00];
+    var _Yellow    = [0.90, 0.90, 0.10, 1.00];
 
     this.PinkSquare = new Renderable(this.ConstantColorShader);
     this.PinkSquare.SetColor(_Pink);

@@ -1,10 +1,11 @@
 "use strict";
 
 function SimpleShader(vertexShaderId, fragmentShaderId){
-
     this.CompiledShader = null;
     this.ShaderVertexPositionAttribute = null;
     this.PixelColor = null;
+    this.ModelTransform = null;
+    this.ViewProjectionTransform = null;
 
     var _GL = GameEngine.Core.GetGL();
 
@@ -18,7 +19,7 @@ function SimpleShader(vertexShaderId, fragmentShaderId){
 
     if(!_GL.getProgramParameter(this.CompiledShader, _GL.LINK_STATUS)){
         alert("Error linking shader");
-        return null;
+        return;
     }
 
     this.ShaderVertexPositionAttribute = _GL.getAttribLocation(this.CompiledShader, "GLSL_SquareVertexPosition");
@@ -26,11 +27,11 @@ function SimpleShader(vertexShaderId, fragmentShaderId){
     _GL.vertexAttribPointer(this.ShaderVertexPositionAttribute, 3, _GL.FLOAT, false, 0, 0);
 
     this.PixelColor = _GL.getUniformLocation(this.CompiledShader, "GLSL_PixelColor");
-
-};
+    this.ModelTransform = _GL.getUniformLocation(this.CompiledShader, "GLSL_ModelTransform");
+    this.ViewProjectionTransform = _GL.getUniformLocation(this.CompiledShader, "GLSL_ViewProjectionTransform");
+}
 
 SimpleShader.prototype._LoadAndCompileShader = function(filePath, shaderType){
-
     var _XMLRequest = new XMLHttpRequest();
     _XMLRequest.open("GET", filePath, false);
     try{
@@ -58,16 +59,19 @@ SimpleShader.prototype._LoadAndCompileShader = function(filePath, shaderType){
     }
 
     return _CompiledShader;
-
 };
 
-SimpleShader.prototype.ActivateShader = function(pixelColor){
-
+SimpleShader.prototype.ActivateShader = function(pixelColor, vpMatrix){
     var _GL = GameEngine.Core.GetGL();
     _GL.useProgram(this.CompiledShader);
+    _GL.uniformMatrix4fv(this.ViewProjectionTransform, false, vpMatrix);
     _GL.enableVertexAttribArray(this.ShaderVertexPositionAttribute);
     _GL.uniform4fv(this.PixelColor, pixelColor);
+};
 
+SimpleShader.prototype.LoadObjectTransform = function(modelTransform){
+    var _GL = GameEngine.Core.GetGL();
+    _GL.uniformMatrix4fv(this.ModelTransform, false, modelTransform);
 };
 
 SimpleShader.prototype.GetShader = function(){ return this.CompiledShader; };

@@ -15,45 +15,40 @@ function Game(canvasId){
 
     GameEngine.Core.ClearCanvas([0.9, 0.9, 0.9, 1.0]); //clear entire canvas to off-white color
     this.Camera.SetupViewProjection();
-    var viewProjectionMatrix = this.Camera.GetViewProjectionMatrix();
 
-    var _Grey      = [0.10, 0.10, 0.10, 1.00];
-    var _Red       = [0.90, 0.10, 0.10, 1.00];
-    var _Green     = [0.10, 0.90, 0.10, 1.00];
-    var _Blue      = [0.10, 0.10, 0.90, 1.00];
-    var _Pink      = [0.90, 0.10, 0.90, 1.00];
-    var _Yellow    = [0.90, 0.90, 0.10, 1.00];
+    this.WhiteSquare = new Renderable(this.ConstantColorShader);
+    this.WhiteSquare.SetColor([1.0, 1.0, 1.0, 1.0]);
+    this.WhiteSquare.GetTransform().SetPosition(20, 60);
+    this.WhiteSquare.GetTransform().SetRotationInRadians(0.2);
+    this.WhiteSquare.GetTransform().SetScale(5, 5);
 
-    this.PinkSquare = new Renderable(this.ConstantColorShader);
-    this.PinkSquare.SetColor(_Pink);
-    this.PinkSquare.GetTransform().SetPosition(20, 60);
-    this.PinkSquare.GetTransform().SetRotationInRadians(0.2);
-    this.PinkSquare.GetTransform().SetScale(5, 5);
-    this.PinkSquare.Draw(viewProjectionMatrix);
+    this.RedSquare = new Renderable(this.ConstantColorShader);
+    this.RedSquare.SetColor([1.0, 0.0, 0.0, 1.0]);
+    this.RedSquare.GetTransform().SetPosition(20, 60);
+    this.RedSquare.GetTransform().SetScale(2, 2);
 
-    this.YellowSquare = new Renderable(this.ConstantColorShader);
-    this.YellowSquare.SetColor(_Yellow);
-    this.YellowSquare.GetTransform().SetPosition(20, 60);
-    this.YellowSquare.GetTransform().SetScale(2, 2);
-    this.YellowSquare.Draw(viewProjectionMatrix);
-
-    this.TopLeftSquare = new Renderable(this.ConstantColorShader);
-    this.TopLeftSquare.SetColor(_Red);
-    this.TopLeftSquare.GetTransform().SetPosition(10, 65);
-    this.TopLeftSquare.Draw(viewProjectionMatrix);
-
-    this.TopRightSquare = new Renderable(this.ConstantColorShader);
-    this.TopRightSquare.SetColor(_Green);
-    this.TopRightSquare.GetTransform().SetPosition(30, 65);
-    this.TopRightSquare.Draw(viewProjectionMatrix);
-
-    this.BottomLeftSquare = new Renderable(this.ConstantColorShader);
-    this.BottomLeftSquare.SetColor(_Grey);
-    this.BottomLeftSquare.GetTransform().SetPosition(10, 55);
-    this.BottomLeftSquare.Draw(viewProjectionMatrix);
-
-    this.BottomRightSquare = new Renderable(this.ConstantColorShader);
-    this.BottomRightSquare.SetColor(_Blue);
-    this.BottomRightSquare.GetTransform().SetPosition(30, 55);
-    this.BottomRightSquare.Draw(viewProjectionMatrix);
+    GameEngine.Loop.Start(this);
 }
+
+Game.prototype.Update = function(){
+    //simply move white square and pulse red square
+
+    var _WhiteTransform = this.WhiteSquare.GetTransform();
+    if(_WhiteTransform.GetXPosition() > 30) _WhiteTransform.SetPosition(10, 60);
+    var newX = _WhiteTransform.GetXPosition() + 0.05;
+    _WhiteTransform.SetXPosition(newX);
+    var newRotation = _WhiteTransform.GetRotation() + 0.01;
+    _WhiteTransform.SetRotationInRadians(newRotation);
+
+    var _RedTransform = this.RedSquare.GetTransform();
+    if(_RedTransform.GetWidth() > 5) _RedTransform.SetScale(2, 2);
+    var newScale = _RedTransform.GetWidth() + 0.05;
+    _RedTransform.SetScale(newScale, newScale);
+};
+
+Game.prototype.Draw = function(){
+    GameEngine.Core.ClearCanvas([0.9, 0.9, 0.9, 1.0]); //clear to off white
+    this.Camera.SetupViewProjection();
+    this.WhiteSquare.Draw(this.Camera.GetViewProjectionMatrix());
+    this.RedSquare.Draw(this.Camera.GetViewProjectionMatrix());
+};

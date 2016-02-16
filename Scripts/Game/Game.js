@@ -1,7 +1,7 @@
 "use strict";
 
 function Game(canvasId){
-    GameEngine.Core.Initialize(canvasId);
+    GameEngine.Core.InitializeEngine(canvasId);
 
     this.Camera = new Camera(
         vec2.fromValues(20, 60),
@@ -31,19 +31,24 @@ function Game(canvasId){
 }
 
 Game.prototype.Update = function(){
-    //simply move white square and pulse red square
 
     var _WhiteTransform = this.WhiteSquare.GetTransform();
-    if(_WhiteTransform.GetXPosition() > 30) _WhiteTransform.SetPosition(10, 60);
-    var newX = _WhiteTransform.GetXPosition() + 0.05;
-    _WhiteTransform.SetXPosition(newX);
-    var newRotation = _WhiteTransform.GetRotation() + 0.01;
-    _WhiteTransform.SetRotationInRadians(newRotation);
+    if(GameEngine.Input.IsKeyPressed(GameEngine.Input.Keys.Right)){
+        if(_WhiteTransform.GetXPosition() > 30) _WhiteTransform.SetPosition(10, 60);
+        var _NewX = _WhiteTransform.GetXPosition() + 0.05;
+        _WhiteTransform.SetXPosition(_NewX);
+    }
+    if(GameEngine.Input.IsKeyPressed(GameEngine.Input.Keys.Up)){
+        var _NewRotation = _WhiteTransform.GetRotation() + 0.01;
+        _WhiteTransform.SetRotationInRadians(_NewRotation);
+    }
 
     var _RedTransform = this.RedSquare.GetTransform();
-    if(_RedTransform.GetWidth() > 5) _RedTransform.SetScale(2, 2);
-    var newScale = _RedTransform.GetWidth() + 0.05;
-    _RedTransform.SetScale(newScale, newScale);
+    if(GameEngine.Input.IsKeyPressed(GameEngine.Input.Keys.Down)){
+        if(_RedTransform.GetWidth() > 5) _RedTransform.SetScale(2, 2);
+        var newScale = _RedTransform.GetWidth() + 0.05;
+        _RedTransform.SetScale(newScale, newScale);
+    }
 };
 
 Game.prototype.Draw = function(){

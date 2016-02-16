@@ -28,6 +28,7 @@ GameEngine.Loop = (function(){
 
             //update the game the appropriate number of times
             while(_LagTime >= _MPF && _IsRunning){
+                GameEngine.Input.Update();
                 this.Update();
                 _LagTime -= _MPF;
             }
@@ -42,7 +43,7 @@ GameEngine.Loop = (function(){
         _PreviousTime = Date.now();
         _LagTime = 0.0;
         _IsRunning = true;
-        requestAnimationFrame(function(){ _Run().call(_Game); });
+        requestAnimationFrame(function(){ _Run.call(_Game); });
     };
 
     return {

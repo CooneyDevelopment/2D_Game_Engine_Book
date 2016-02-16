@@ -15,7 +15,12 @@ GameEngine.Core = (function(){
             document.write("<br/><b>WebGL is not supported!</b>");
             return;
         }
+    };
+
+    var _InitializeEngineCore = function(canvasId){
+        _InitializeWebGL(canvasId);
         GameEngine.VertexBuffer.Initialize();
+        GameEngine.Input.Initialize();
     };
 
     var _ClearCanvas = function(color){
@@ -25,7 +30,7 @@ GameEngine.Core = (function(){
 
     return {
         GetGL: _GetGL,
-        Initialize: _InitializeWebGL,
+        InitializeEngine: _InitializeEngineCore,
         ClearCanvas: _ClearCanvas
     };
 

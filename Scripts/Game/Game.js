@@ -1,34 +1,32 @@
 "use strict";
 
-function Game(canvasId){
-    GameEngine.Core.InitializeEngine(canvasId);
+function Game(){
+    this.Camera = null;
+    this.WhiteSquare = null;
+    this.RedSquare = null;
+}
 
+Game.prototype.Initialize = function(){
     this.Camera = new Camera(
         vec2.fromValues(20, 60),
         20,
         [20, 40, 600, 300]
     );
-
-    this.ConstantColorShader = new SimpleShader(
-        "Scripts/GLSLShaders/SimpleVertexShader.glsl",
-        "Scripts/GLSLShaders/SimpleFragmentShader.glsl");
-
-    GameEngine.Core.ClearCanvas([0.9, 0.9, 0.9, 1.0]); //clear entire canvas to off-white color
     this.Camera.SetupViewProjection();
 
-    this.WhiteSquare = new Renderable(this.ConstantColorShader);
+    var _ConstantColorShader = GameEngine.DefaultResources.GetConstantColorShader();
+
+    this.WhiteSquare = new Renderable(_ConstantColorShader);
     this.WhiteSquare.SetColor([1.0, 1.0, 1.0, 1.0]);
     this.WhiteSquare.GetTransform().SetPosition(20, 60);
     this.WhiteSquare.GetTransform().SetRotationInRadians(0.2);
     this.WhiteSquare.GetTransform().SetScale(5, 5);
 
-    this.RedSquare = new Renderable(this.ConstantColorShader);
+    this.RedSquare = new Renderable(_ConstantColorShader);
     this.RedSquare.SetColor([1.0, 0.0, 0.0, 1.0]);
     this.RedSquare.GetTransform().SetPosition(20, 60);
     this.RedSquare.GetTransform().SetScale(2, 2);
-
-    GameEngine.Loop.Start(this);
-}
+};
 
 Game.prototype.Update = function(){
 

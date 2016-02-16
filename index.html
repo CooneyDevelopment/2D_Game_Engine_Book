@@ -2,7 +2,7 @@
 <head>
     <title>2D Game Engine</title>
 </head>
-<body onload="new Game('GL_Canvas');">
+<body onload="var game = new Game(); GameEngine.Core.InitializeEngine('GL_Canvas', game); ">
 
 <!-- Libraries Start -->
 <script type="text/javascript" src="Scripts/Libraries/gl-matrix.js"></script>
@@ -13,6 +13,9 @@
 <script type="text/javascript" src="Scripts/Engine/Core/Engine_VertexBuffer.js"></script>
 <script type="text/javascript" src="Scripts/Engine/Core/Engine_Loop.js"></script>
 <script type="text/javascript" src="Scripts/Engine/Core/Engine_Input.js"></script>
+<script type="text/javascript" src="Scripts/Engine/Core/Resources/Engine_ResourceMap.js"></script>
+<script type="text/javascript" src="Scripts/Engine/Core/Resources/Engine_DefaultResources.js"></script>
+<script type="text/javascript" src="Scripts/Engine/Core/Resources/Engine_TextFileLoader.js"></script>
 <script type="text/javascript" src="Scripts/Engine/SimpleShader.js"></script>
 <script type="text/javascript" src="Scripts/Engine/Renderable.js"></script>
 <script type="text/javascript" src="Scripts/Engine/Transform.js"></script>

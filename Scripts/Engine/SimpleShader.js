@@ -9,8 +9,8 @@ function SimpleShader(vertexShaderId, fragmentShaderId){
 
     var _GL = GameEngine.Core.GetGL();
 
-    var vertexShader = this._LoadAndCompileShader(vertexShaderId, _GL.VERTEX_SHADER);
-    var fragmentShader = this._LoadAndCompileShader(fragmentShaderId, _GL.FRAGMENT_SHADER);
+    var vertexShader = this._CompileShader(vertexShaderId, _GL.VERTEX_SHADER);
+    var fragmentShader = this._CompileShader(fragmentShaderId, _GL.FRAGMENT_SHADER);
 
     this.CompiledShader = _GL.createProgram();
     _GL.attachShader(this.CompiledShader, vertexShader);
@@ -31,22 +31,13 @@ function SimpleShader(vertexShaderId, fragmentShaderId){
     this.ViewProjectionTransform = _GL.getUniformLocation(this.CompiledShader, "GLSL_ViewProjectionTransform");
 }
 
-SimpleShader.prototype._LoadAndCompileShader = function(filePath, shaderType){
-    var _XMLRequest = new XMLHttpRequest();
-    _XMLRequest.open("GET", filePath, false);
-    try{
-        _XMLRequest.send();
-    } catch(error){
-        alert("Failed to load shader: " + filePath);
-        return null;
-    }
-    var _ShaderSource = _XMLRequest.responseText;
+SimpleShader.prototype._CompileShader = function(filePath, shaderType){
+    var _ShaderSource = GameEngine.ResourceMap.RetrieveAsset(filePath);
 
     if(_ShaderSource === null) {
         alert("WARNING: Loading of: " + filePath + " Failed!");
         return null;
     }
-
 
     var _GL = GameEngine.Core.GetGL();
     var _CompiledShader = _GL.createShader(shaderType);

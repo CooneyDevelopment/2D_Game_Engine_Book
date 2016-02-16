@@ -13,14 +13,19 @@ GameEngine.Core = (function(){
         _GL = canvas.getContext("webgl") || canvas.getContext("experimental-webgl");
         if(_GL === null){
             document.write("<br/><b>WebGL is not supported!</b>");
-            return;
         }
     };
 
-    var _InitializeEngineCore = function(canvasId){
+    var _InitializeEngineCore = function(canvasId, game){
         _InitializeWebGL(canvasId);
         GameEngine.VertexBuffer.Initialize();
         GameEngine.Input.Initialize();
+        GameEngine.DefaultResources.Initialize(function(){ _StartScene(game) });
+    };
+
+    var _StartScene = function(game){
+        game.Initialize.call(game);
+        GameEngine.Loop.Start(game);
     };
 
     var _ClearCanvas = function(color){
